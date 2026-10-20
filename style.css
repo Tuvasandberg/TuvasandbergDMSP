@@ -644,6 +644,8 @@ footer {
 }
 
 #om {
+  /* Kort extra scrollsträcka innan Om mig glider över hero. */
+  margin-top: 6vh;
   box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.14);
 }
 
