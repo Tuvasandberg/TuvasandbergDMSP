@@ -562,12 +562,13 @@ nav a[href="#kontakt"]:hover {
   width: 100%;
   max-width: min(98vw, 1250px);
   height: auto;
-  aspect-ratio: 1600 / 560;
+  /* SVG:ns viewBox är beskuren nedtill så att hero-innehållet får plats högre upp. */
+  aspect-ratio: 1600 / 450;
   display: block;
   margin: 0 auto;
   background-color: var(--logo-color);
-  -webkit-mask: url("img/logga3.svg") center / contain no-repeat;
-  mask: url("img/logga3.svg") center / contain no-repeat;
+  -webkit-mask: url("img/logga3.svg") center top / contain no-repeat;
+  mask: url("img/logga3.svg") center top / contain no-repeat;
 }
 
 .intro-innehall {
