@@ -612,6 +612,24 @@ nav a[href="#kontakt"]:hover {
   margin-bottom: 0.65rem;
 }
 
+/* På mobil minskas texten under knappen och frigörs utrymme längst ned i hero. */
+@media (max-width: 48rem) {
+  .intro {
+    padding-bottom: 1.5cm;
+  }
+
+  .intro-citat {
+    font-size: clamp(1rem, 4.5vw, 1.15rem);
+    line-height: 1.45;
+  }
+
+  .intro-beskrivning {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+}
+
 /* ==========================================================================
    SCROLLÖVERGÅNG: NÄSTA SEKTION GLIDER UPP ÖVER HERO
    Hero-bakgrunden och innehållet ligger kvar bakom medan Om mig rör sig upp.
