@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
+  <title id="title">Tuva Sandberg</title>
+  <desc id="desc">Kalligrafisk signatur med stora T och S, små bokstäver placerade vid versalernas mittlinje.</desc>
+  <style>
+    /* Ändra #800525 för att byta loggans färg */
+    .ink { fill: #800525; }
+    .script { font-family: 'Snell Roundhand', 'Apple Chancery', cursive; font-style: italic; font-weight: 400; }
+  </style>
+  <g class="ink script">
+    <text x="72" y="366" font-size="350">T</text>
+    <text x="370" y="275" font-size="222" letter-spacing="-7">uva</text>
+    <text x="620" y="366" font-size="350">S</text>
+    <text x="860" y="275" font-size="222" letter-spacing="-8">andberg</text>
+  </g>
+</svg>

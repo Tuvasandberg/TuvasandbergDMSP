@@ -1,0 +1,1336 @@
+/* ==========================================================================
+   1 · BOX-MODELLEN: BREDDEN GÄLLER HELA LÅDAN
+   Gör att marginaler och ramar räknas in i elementens totala bredd,
+   vilket eliminerar oönskad horisontell scrollning på mobiler.
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2 · ALLA FÄRGKODER (VARIABLER FÖR VARJE SEKTION, MENY OCH TEXT)
+   Här kan du ändra exakt den färg du vill ha för varje enskild del och text!
+   ========================================================================== */
+:root {
+  /* ========================================================================
+     A · BAKGRUNDSFÄRGER FÖR VARJE SIDA / SEKTION
+     ======================================================================== */
+  --bg-sidhuvud: #800525;
+  /* Bakgrund för sidhuvudet (menyn högst upp) */
+  --bg-ticker: #f8e5e5;
+  /* Bakgrund för det rullande textbandet */
+  --bg-intro: #ffc0d0;
+  /* Bakgrund för Intro / Hero-sektionen */
+  --bg-hero-image: url("img/hero3-90grader-vanster.jpg");
+  /* Hero-bakgrund från hero3.jpg, roterad 90 grader åt vänster */
+  --bg-om-mig: #ffc0d0;
+  /* Bakgrund för Om mig-sektionen */
+  --bg-om-mig-image: url("img/bakgrund-om-mig.jpg");
+  --bg-kompetenser: #f9e2e8;
+  /* Bakgrund för Kompetenser-sektionen */
+  --bg-kompetenser-image: url("img/bakgrund-kompetenser-zebra-90grader-vanster.png");
+  /* Kompetensbakgrund */
+  --bg-mitt-arbete: #800525;
+  /* Bakgrund för Mitt arbete-sektionen (mörk del) */
+  --bg-mitt-arbete-image: url("img/bakgrund-arbete-ny.jpg");
+  --bg-kontakt: #f9e2e8;
+  /* Bakgrund för Kontakt-sektionen */
+  --bg-kontakt-image: url("img/bakgrund-kontakt-kompetenser.jpg");
+  --bg-sidfot: #ffc0d0;
+  /* Bakgrund för sidfoten längst ner */
+  --bg-sidfot-image: url("img/bakgrund-footer-kakel3.jpg");
+
+  /* ========================================================================
+     B · RAMAR OCH SKILJELINJER FÖR VARJE SEKTION
+     ======================================================================== */
+  --ram-sidhuvud: #800525;
+  /* Linje under sidhuvudet */
+  --ram-ticker: #800525;
+  /* Linje runt det rullande textbandet */
+  --ram-intro: #800525;
+  /* Linje under Intro-sektionen */
+  --ram-om-mig: #800525;
+  /* Linje under Om mig-sektionen */
+  --ram-kompetenser: #800525;
+  /* Skiljelinjer mellan kompetenserna */
+  --ram-mitt-arbete: #333333;
+  /* Skiljelinje i Mitt arbete-sektionen */
+  --ram-kontakt: #800525;
+  /* Skiljelinjer i kontaktsektionen */
+
+  /* ========================================================================
+     C · TEXT- OCH KNAPPFÄRGER: SIDHUVUD & MENY (INDIVIDUELLT JUSTERBARA)
+     ======================================================================== */
+  --text-logo: #ffffff;
+  /* Namnet / logotypen i sidhuvudet */
+  --logo-color: #800525;
+  /* Ändra denna variabel för att byta färg på herologotypen */
+
+  /* Menyrubrik 1: Om mig */
+  --meny-om-text: #ffffff;
+  --meny-om-bg: transparent;
+  --meny-om-ram: rgba(255, 255, 255, 0.9);
+  --meny-om-hover-text: #800525;
+  --meny-om-hover-bg: #ffffff;
+  --meny-om-hover-ram: #ffffff;
+
+  /* Menyrubrik 2: Kompetenser */
+  --meny-kompetenser-text: #ffffff;
+  --meny-kompetenser-bg: transparent;
+  --meny-kompetenser-ram: rgba(255, 255, 255, 0.9);
+  --meny-kompetenser-hover-text: #800525;
+  --meny-kompetenser-hover-bg: #ffffff;
+  --meny-kompetenser-hover-ram: #ffffff;
+
+  /* Menyrubrik 3: Mitt arbete */
+  --meny-arbete-text: #ffffff;
+  --meny-arbete-bg: transparent;
+  --meny-arbete-ram: rgba(255, 255, 255, 0.9);
+  --meny-arbete-hover-text: #800525;
+  --meny-arbete-hover-bg: #ffffff;
+  --meny-arbete-hover-ram: #ffffff;
+
+  /* Menyrubrik 4: Kontakt */
+  --meny-kontakt-text: #ffffff;
+  --meny-kontakt-bg: transparent;
+  --meny-kontakt-ram: rgba(255, 255, 255, 0.9);
+  --meny-kontakt-hover-text: #800525;
+  --meny-kontakt-hover-bg: #ffffff;
+  --meny-kontakt-hover-ram: #ffffff;
+
+  /* ========================================================================
+     D · TEXTFÄRGER: RULLANDE TEXTBAND (INDIVIDUELLT JUSTERBARA VARIABLER)
+     ======================================================================== */
+  --ticker-farg-lia: #800525;
+  /* TILLGÄNGLIG FÖR LIA & UPPDRAG VÅREN 2027 */
+  --ticker-farg-specialist: #800525;
+  /* DIGITAL MARKETING SPECIALIST */
+  --ticker-farg-sociala: #800525;
+  /* SOCIALA MEDIER & CONTENT */
+  --ticker-farg-goteborg: #800525;
+  /* GÖTEBORG */
+  --ticker-farg-kreativ: #800525;
+  /* KREATIV KOMMUNIKATION */
+
+  /* ========================================================================
+     E · TEXTFÄRGER: INTRO / HERO
+     ======================================================================== */
+  --text-intro-sub: #800525;
+  /* Liten rubrik över namnet (DIGITAL MARKETING...) */
+  --text-intro-namn: #800525;
+  /* Det stora namnet / logotypen */
+  --text-intro-citat: #800525;
+  /* Det stora citatet / ingressen */
+  --text-intro-brodtext: #800525;
+  /* Brödtexten under citatet i introt */
+
+  /* ========================================================================
+     F · TEXTFÄRGER: OM MIG
+     ======================================================================== */
+  --text-om-etikett: #800525;
+  /* Liten etikett (// OM MIG) */
+  --text-om-citat: #800525;
+  /* Det kursiva citatet ("Jag vill få varumärken...") */
+  --text-om-brodtext: #800525;
+  /* Alla textstycken i Om mig */
+  --bg-polaroid: #ffffff;
+  /* Bakgrundsfärg på profilbildens polaroidram */
+  --text-polaroid: #800525;
+  /* Bildtext under profilbilden (Tuva Sandberg · 2026) */
+
+  /* ========================================================================
+     G · TEXTFÄRGER: KOMPETENSER
+     ======================================================================== */
+  --text-komp-vertikal: #800525;
+  /* Stor vertikal rubrik (KOMPETENSER) */
+  --text-komp-etikett: #800525;
+  /* Liten etikett (// VAD JAG GÖR) */
+  --text-komp-rubrik: #800525;
+  /* Sektionsrubriken (Kompetenser) */
+  --text-komp-titel: #800525;
+  /* Titel på varje kompetens (Social Media...) */
+  --text-komp-beskrivning: #800525;
+  /* Beskrivningen under varje kompetens */
+
+  /* ========================================================================
+     H · TEXTFÄRGER: MITT ARBETE (PROJEKT & KARUSELL)
+     ======================================================================== */
+  --text-arbete-vertikal: #ffffff;
+  /* Stor vertikal rubrik (ARBETE) */
+  --text-arbete-etikett: #ffffff;
+  /* Liten etikett (// PORTFOLIO & PROJEKT) */
+  --text-arbete-rubrik: #ffffff;
+  /* Sektionsrubriken (Mitt arbete) */
+  --bg-projekt-kort: #1a1a1a;
+  /* Bakgrundsfärg på varje projektkort */
+  --ram-projekt-kort: #333333;
+  /* Ramfärg runt projektkorten */
+  --text-projekt-kod: #c5bfb4;
+  /* Kodtext ([01] FOTOGRAFI osv) */
+  --text-projekt-titel: #ffffff;
+  /* Titel på varje projekt */
+  --text-projekt-beskrivning: #b5afa4;
+  /* Beskrivningstext på varje projekt */
+
+  /* ========================================================================
+     I · TEXTFÄRGER: KONTAKT
+     ======================================================================== */
+  --text-kontakt-etikett: #800525;
+  /* Liten etikett (// KONTAKT) */
+  --text-kontakt-rubrik: #800525;
+  /* Huvudrubriken i kontakt */
+  --text-kontakt-ingress: #800525;
+  /* Inledande text under kontaktrubriken */
+  --text-kontakt-etiketter: #800525;
+  /* Fältrubriker (Telefon, E-post, Plats, LinkedIn) */
+  --text-kontakt-lankar: #800525;
+  /* Telefonnummer, e-postadress, adress och länk */
+
+  /* ========================================================================
+     J · KNAPPAR: TEXT, BAKGRUND OCH RAM
+     ======================================================================== */
+  --btn-text: #800525;
+  /* Textfärg på knapparna */
+  --btn-bg: transparent;
+  /* Bakgrundsfärg på knapparna */
+  --btn-ram: #800525;
+  /* Ramfärg på knapparna */
+  --btn-hover-text: #ffffff;
+  /* Textfärg när man hovrar över knappen */
+  --btn-hover-bg: #800525;
+  /* Bakgrundsfärg vid hovring */
+
+  /* ========================================================================
+     K · SIDFOT
+     ======================================================================== */
+  --text-sidfot: #ffffff;
+  /* Copyright-texten längst ner */
+
+  /* Typografi från designmallen: Oswald (kondenserad rubrik), Playfair & Sans */
+  --typsnitt-display: "Oswald", -apple-system, sans-serif;
+  --typsnitt-serif: "Playfair Display", Georgia, serif;
+  --typsnitt-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* Grundmått för luft och avstånd */
+  --luft: 1rem;
+}
+
+/* ==========================================================================
+   3 · GRUNDSTIL
+   Ren typografisk hierarki och mjuka övergångar.
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--typsnitt-sans);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-intro-brodtext);
+  background-color: var(--bg-kompetenser);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  letter-spacing: 0.02em;
+}
+
+p {
+  max-width: 65ch;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Etiketter i redaktionell stil */
+.etikett {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.25rem;
+  font-family: var(--typsnitt-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+
+.etikett::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: currentColor;
+  transform: skewX(-28deg);
+  transform-origin: left center;
+}
+
+.etikett-ljus {
+  color: var(--text-arbete-etikett);
+}
+
+/* ==========================================================================
+   4 · SIDHUVUD OCH MENY
+   Tydliga knappar med synlig ram för varje menyrubrik.
+   ========================================================================== */
+.sidhuvud {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding: calc(var(--luft) * 1.5) calc(var(--luft) * 1.5);
+  background-color: var(--bg-sidhuvud);
+  border-bottom: 1px solid var(--ram-sidhuvud);
+  position: relative;
+  z-index: 10;
+}
+
+.logo-namn {
+  font-family: var(--typsnitt-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-logo);
+}
+
+nav {
+  margin-left: auto;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a.meny-knapp,
+nav a {
+  font-family: var(--typsnitt-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.15rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Ta bort // framför alla menyrubriker */
+nav a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Individuellt styrda knappar med synlig ram */
+nav a.meny-om,
+nav a[href="#om"] {
+  color: var(--meny-om-text);
+  background-color: var(--meny-om-bg);
+  border: 1.5px solid var(--meny-om-ram);
+}
+
+nav a.meny-om:hover,
+nav a[href="#om"]:hover {
+  color: var(--meny-om-hover-text);
+  background-color: var(--meny-om-hover-bg);
+  border-color: var(--meny-om-hover-ram);
+  transform: translateY(-1px);
+}
+
+nav a.meny-kompetenser,
+nav a[href="#kompetenser"] {
+  color: var(--meny-kompetenser-text);
+  background-color: var(--meny-kompetenser-bg);
+  border: 1.5px solid var(--meny-kompetenser-ram);
+}
+
+nav a.meny-kompetenser:hover,
+nav a[href="#kompetenser"]:hover {
+  color: var(--meny-kompetenser-hover-text);
+  background-color: var(--meny-kompetenser-hover-bg);
+  border-color: var(--meny-kompetenser-hover-ram);
+  transform: translateY(-1px);
+}
+
+nav a.meny-arbete,
+nav a[href="#arbete"] {
+  color: var(--meny-arbete-text);
+  background-color: var(--meny-arbete-bg);
+  border: 1.5px solid var(--meny-arbete-ram);
+}
+
+nav a.meny-arbete:hover,
+nav a[href="#arbete"]:hover {
+  color: var(--meny-arbete-hover-text);
+  background-color: var(--meny-arbete-hover-bg);
+  border-color: var(--meny-arbete-hover-ram);
+  transform: translateY(-1px);
+}
+
+nav a.meny-kontakt,
+nav a[href="#kontakt"] {
+  color: var(--meny-kontakt-text);
+  background-color: var(--meny-kontakt-bg);
+  border: 1.5px solid var(--meny-kontakt-ram);
+}
+
+nav a.meny-kontakt:hover,
+nav a[href="#kontakt"]:hover {
+  color: var(--meny-kontakt-hover-text);
+  background-color: var(--meny-kontakt-hover-bg);
+  border-color: var(--meny-kontakt-hover-ram);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   5 · TICKER TAPE / MARQUEE-BAND
+   Sömlöst rullande textband utan '//' med individuellt justerbara färger.
+   ========================================================================== */
+.ticker-rad {
+  background-color: var(--bg-ticker);
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--ram-ticker);
+  border-bottom: 1px solid var(--ram-ticker);
+  padding: 0.85rem 0;
+  display: flex;
+  position: relative;
+  z-index: 10;
+}
+
+.ticker-spar {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: rulla-ticker 24s linear infinite;
+}
+
+.ticker-spar:hover {
+  animation-play-state: paused;
+}
+
+.ticker-del {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 2.75rem;
+  padding-right: 2.75rem;
+}
+
+.ticker-del span {
+  font-family: var(--typsnitt-sans);
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+/* Individuella färgvariabler för varje textstycke i bandet */
+.ticker-del span.ticker-lia {
+  color: var(--ticker-farg-lia);
+}
+
+.ticker-del span.ticker-specialist {
+  color: var(--ticker-farg-specialist);
+}
+
+.ticker-del span.ticker-sociala {
+  color: var(--ticker-farg-sociala);
+}
+
+.ticker-del span.ticker-goteborg {
+  color: var(--ticker-farg-goteborg);
+}
+
+.ticker-del span.ticker-kreativ {
+  color: var(--ticker-farg-kreativ);
+}
+
+@keyframes rulla-ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   6 · INTRO / HERO & SCROLLÖVERGÅNG
+   Centrerat innehåll, responsiv logotyp och en mjuk 'curtain' scrollövergång
+   där nästa sektion glider upp och täcker Hero.
+   ========================================================================== */
+.intro {
+  padding: calc(var(--luft) * 2.5) calc(var(--luft) * 1.5) 6cm;
+  background-color: var(--bg-intro);
+  background-image: linear-gradient(rgba(255, 240, 244, 0.3), rgba(255, 240, 244, 0.42)), var(--bg-hero-image);
+  background-position: center;
+  background-size: cover;
+  border-bottom: 1px solid var(--ram-intro);
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-block {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Yrkesrubrik centrerad ovanför logotypen, förstärkt för tydligare hierarki */
+.hero-sub {
+  font-family: var(--typsnitt-sans);
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-intro-sub);
+  margin: 0 auto 0.75rem auto;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+/* Logotyp med litet och jämnt mellanrum till undertexten */
+.hero-logotyp-wrap {
+  margin: 0 auto 0.5cm auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Tydligt större logotyp: ca 5 cm luft på vardera sidan på stora skärmar, responsiv på mobil */
+.hero-logotyp {
+  width: 100%;
+  max-width: min(98vw, 1250px);
+  height: auto;
+  aspect-ratio: 1600 / 560;
+  display: block;
+  margin: 0 auto;
+  background-color: var(--logo-color);
+  -webkit-mask: url("img/logga3.svg") center / contain no-repeat;
+  mask: url("img/logga3.svg") center / contain no-repeat;
+}
+
+.intro-innehall {
+  max-width: 60rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ingressen visas direkt under logotypen med cirka 1 cm mellanrum */
+.intro-citat {
+  font-family: var(--typsnitt-serif);
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--text-intro-citat);
+  margin: 0 auto 0.65rem auto;
+  max-width: 62ch;
+  text-align: center;
+}
+
+.intro-beskrivning {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--text-intro-brodtext);
+  margin: 0 auto 1.15rem auto;
+  max-width: 66ch;
+  text-align: center;
+}
+
+/* Kontakta mig-knappen flyttad upp, närmare undertexten och högre i hero */
+.hero-knapp-rad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.15rem;
+}
+
+/* ==========================================================================
+   SCROLLÖVERGÅNG: NÄSTA SEKTION GLIDER UPP ÖVER HERO
+   Hero-bakgrunden och innehållet ligger kvar bakom medan Om mig rör sig upp.
+   ========================================================================== */
+#om,
+#kompetenser,
+#arbete,
+#kontakt,
+footer {
+  position: relative;
+  z-index: 2;
+}
+
+#om {
+  box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.14);
+}
+
+/* Generella knappar */
+.knapp {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1.5px solid var(--btn-ram);
+  font-family: var(--typsnitt-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.knapp:hover {
+  background-color: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  border-color: var(--btn-hover-bg);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   7 · OM MIG
+   Inspirerad av redaktionellt citat och polaroid-kollage med svartvit profilbild.
+   ========================================================================== */
+#om {
+  padding: calc(var(--luft) * 4) calc(var(--luft) * 1.5);
+  background-color: var(--bg-om-mig);
+  background-image: linear-gradient(rgba(255, 240, 244, 0.48), rgba(255, 240, 244, 0.48)), var(--bg-om-mig-image);
+  background-position: center;
+  background-size: cover;
+  border-bottom: 1px solid var(--ram-om-mig);
+}
+
+.om-layout {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--luft) * 3);
+}
+
+#om .etikett {
+  color: var(--text-om-etikett);
+}
+
+.citat-rubrik {
+  font-family: var(--typsnitt-serif);
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--text-om-citat);
+  margin-bottom: 1.75rem;
+  max-width: 38ch;
+}
+
+.om-text-block p {
+  font-size: 1.025rem;
+  line-height: 1.7;
+  color: var(--text-om-brodtext);
+}
+
+.om-text-block .knapp {
+  margin-top: 1.5rem;
+}
+
+/* Profilbild utan ram, med större format och fokus på ansiktet */
+.profilbild {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 20%;
+  max-width: 420px;
+  margin: 0 auto;
+  filter: grayscale(100%);
+}
+
+@media (max-width: 48rem) {
+  /* Visa porträttet före texten på små skärmar. */
+  .om-bild-block {
+    order: -1;
+  }
+}
+
+.polaroid-text {
+  display: block;
+  font-family: var(--typsnitt-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--text-polaroid);
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   8 · KOMPETENSER
+   Minimalistisk redaktionell lista med tunna skiljelinjer, utan '+'-tecken.
+   ========================================================================== */
+#kompetenser {
+  padding: calc(var(--luft) * 4) calc(var(--luft) * 1.5);
+  background-color: var(--bg-kompetenser);
+  background-image: linear-gradient(rgba(255, 248, 250, 0.62), rgba(255, 248, 250, 0.68)), var(--bg-kompetenser-image);
+  background-position: center;
+  background-size: cover;
+  border-bottom: 1px solid var(--ram-kompetenser);
+}
+
+.sektion-rad {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--luft) * 2);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.sidrubrik-vertikal {
+  font-family: var(--typsnitt-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-komp-vertikal);
+}
+
+#kompetenser .sektion-topp .etikett {
+  color: var(--text-komp-etikett);
+}
+
+.sektion-topp h2 {
+  font-family: var(--typsnitt-serif);
+  font-size: 2rem;
+  color: var(--text-komp-rubrik);
+  margin-bottom: 1.5rem;
+}
+
+.lista-tjanster {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 calc(var(--luft) * 2.5) 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.tjanst-rad {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--ram-kompetenser);
+  background: transparent;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tjanst-rad:last-child {
+  border-bottom: 1px solid var(--ram-kompetenser);
+}
+
+.tjanst-rad:hover {
+  background-color: rgba(128, 5, 37, 0.04);
+}
+
+.tjanst-text {
+  flex: 1;
+}
+
+.tjanst-text h3 {
+  font-family: var(--typsnitt-serif);
+  font-size: 1.4rem;
+  color: var(--text-komp-titel);
+  margin-bottom: 0.35rem;
+}
+
+.tjanst-text p {
+  font-size: 1rem;
+  color: var(--text-komp-beskrivning);
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* ==========================================================================
+   9 · MITT ARBETE & BILD-KARUSELL
+   Sömlös karusell med 8 unika bilder och klickbar ljusbox.
+   ========================================================================== */
+.mork-sektion {
+  padding: calc(var(--luft) * 4) calc(var(--luft) * 1.5);
+  background-color: var(--bg-mitt-arbete);
+  background-image: linear-gradient(rgba(128, 5, 37, 0.12), rgba(128, 5, 37, 0.12)), var(--bg-mitt-arbete-image);
+  background-position: center;
+  background-size: cover;
+  color: var(--text-arbete-rubrik);
+  border-bottom: 1px solid var(--ram-mitt-arbete);
+}
+
+.sektion-rad-mork {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--luft) * 2);
+  width: 100%;
+  margin: 0;
+}
+
+.mork-sektion .sidrubrik-vertikal {
+  color: var(--text-arbete-vertikal);
+  top: 30vh;
+  z-index: 0;
+}
+
+.projekt-kolumn {
+  min-width: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.projekt-header h2 {
+  font-family: var(--typsnitt-serif);
+  font-size: 2.25rem;
+  margin-bottom: 2rem;
+  color: var(--text-arbete-rubrik);
+}
+
+/* Karusellen ligger i en vit banderoll som går kant till kant */
+.karusell-omslag {
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  position: relative;
+  padding: 1.25rem 0;
+  background: #ffffff;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.karusell-spar {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  /* Ökad hastighet jämfört med 48s, men lugn och behaglig */
+  animation: karusell-glid 36s linear infinite;
+}
+
+/* När man för muspekaren över karusellen stannar den så man kan klicka */
+.karusell-spar:hover {
+  animation-play-state: paused;
+}
+
+.karusell-grupp {
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--luft) * 2);
+  padding-right: calc(var(--luft) * 2);
+  /* Samma som gapet för en helt sömlös loop */
+  flex-shrink: 0;
+}
+
+.projekt-kort {
+  width: 320px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.projekt-kort:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.projekt-bild-omslag {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  background-color: #000000;
+}
+
+.projekt-kort img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  transition: transform 0.35s ease;
+}
+
+.projekt-kort:hover img {
+  transform: scale(1.04);
+}
+
+/* Individuell beskärning så att personer och motiv framhävs optimalt */
+.bild-fokus-bal-1 {
+  object-position: center 25% !important;
+}
+
+.bild-fokus-bal-2 {
+  object-position: center 18% !important;
+}
+
+.bild-fokus-sport-1 {
+  object-position: center 25% !important;
+}
+
+.bild-fokus-sport-2 {
+  object-position: center 40% !important;
+}
+
+.bild-fokus-sport-3 {
+  object-position: center 20% !important;
+}
+
+.bild-fokus-sport-4 {
+  object-position: center 35% !important;
+}
+
+.projekt-innehall {
+  display: none;
+}
+
+.projekt-kod {
+  display: block;
+  font-family: var(--typsnitt-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-projekt-kod);
+  margin-bottom: 0.5rem;
+}
+
+.projekt-innehall h3 {
+  font-family: var(--typsnitt-serif);
+  font-size: 1.35rem;
+  color: var(--text-projekt-titel);
+  margin-bottom: 0.5rem;
+}
+
+.projekt-innehall p {
+  font-size: 0.95rem;
+  color: var(--text-projekt-beskrivning);
+  margin: 0;
+}
+
+@keyframes karusell-glid {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   LJUSBOX (LIGHTBOX) FÖR BILDVISNING
+   Mörklägger bakgrunden och visar bilden stor och obeskuren med stängknapp.
+   ========================================================================== */
+.ljusbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ljusbox.aktiv {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.ljusbox-oppen {
+  overflow: hidden;
+}
+
+.ljusbox-ram {
+  position: relative;
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ljusbox-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 50%;
+  background: rgba(128, 5, 37, 0.88);
+  color: #fff;
+  font: 600 2rem/1 var(--typsnitt-sans);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.ljusbox-nav:hover {
+  background: #a20a38;
+}
+
+.ljusbox-foregaende { left: -64px; }
+.ljusbox-nasta { right: -64px; }
+
+.ljusbox-bild {
+  max-width: 88vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  display: block;
+}
+
+.ljusbox-stang {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  color: #ffffff;
+  font-size: 2rem;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.ljusbox-stang:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: scale(1.08);
+}
+
+.ljusbox-text {
+  margin-top: 0.85rem;
+  color: #e5e5e5;
+  text-align: center;
+  font-family: var(--typsnitt-sans);
+  font-size: 0.95rem;
+}
+
+.ljusbox-text strong {
+  display: block;
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 48rem) {
+  .ljusbox {
+    padding: 1rem 0.5rem;
+  }
+
+  .ljusbox-stang {
+    top: -42px;
+    right: 4px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.6rem;
+  }
+
+  .ljusbox-bild {
+    max-width: 96vw;
+    max-height: 75vh;
+  }
+
+  .ljusbox-nav {
+    top: auto;
+    bottom: 8px;
+    width: 42px;
+    height: 42px;
+    transform: none;
+  }
+
+  .ljusbox-foregaende { left: 8px; }
+  .ljusbox-nasta { right: 8px; }
+}
+
+/* ==========================================================================
+   10 · KONTAKT
+   Ren, minimalistisk redaktionell kontaktruta.
+   ========================================================================== */
+#kontakt {
+  padding: calc(var(--luft) * 4) calc(var(--luft) * 1.5);
+  background-color: var(--bg-kontakt);
+  background-image: linear-gradient(rgba(255, 246, 248, 0.35), rgba(255, 246, 248, 0.35)), var(--bg-kontakt-image);
+  background-position: center;
+  background-size: cover;
+  border-bottom: 2px solid var(--ram-kontakt);
+}
+
+.kontakt-omslag {
+  max-width: 58rem;
+  margin: 0 auto;
+}
+
+#kontakt .etikett {
+  color: var(--text-kontakt-etikett);
+}
+
+#kontakt h2 {
+  font-family: var(--typsnitt-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  line-height: 1.25;
+  color: var(--text-kontakt-rubrik);
+  margin-bottom: 1rem;
+}
+
+.kontakt-ingress {
+  font-size: 1.1rem;
+  color: var(--text-kontakt-ingress);
+  margin-bottom: 2.5rem;
+}
+
+.kontakt-rader {
+  display: flex;
+  flex-direction: column;
+}
+
+.kontakt-rad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem 0;
+  border-top: 2px solid var(--ram-kontakt);
+}
+
+.kontakt-rad:last-child {
+  border-bottom: 2px solid var(--ram-kontakt);
+}
+
+.kontakt-rubrik {
+  font-family: var(--typsnitt-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-kontakt-etiketter);
+}
+
+.kontakt-rad a,
+.kontakt-rad span:last-child {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-kontakt-lankar);
+  text-decoration: none;
+}
+
+.kontakt-rad a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   11 · FOKUS OCH SIDFOT
+   Hög tillgänglighet och ren, centrerad studio-sidfot.
+   ========================================================================== */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--btn-ram);
+  outline-offset: 3px;
+}
+
+.mork-sektion a:focus-visible,
+.mork-sektion button:focus-visible {
+  outline: 3px solid var(--text-arbete-rubrik);
+  outline-offset: 3px;
+}
+
+footer {
+  padding: calc(var(--luft) * 2.5) calc(var(--luft) * 1.5);
+  background-color: var(--bg-sidfot);
+  background-image: linear-gradient(rgba(65, 0, 20, 0.42), rgba(65, 0, 20, 0.42)), var(--bg-sidfot-image);
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-sidfot);
+}
+
+footer p {
+  margin: 0 auto;
+  color: var(--text-sidfot);
+}
+
+/* ==========================================================================
+   12 · STÖRRE SKÄRMAR (DESKTOP & STUDIOLAYOUT)
+   Flerspaltig redaktionell layout från 768px (48rem).
+   ========================================================================== */
+@media (min-width: 48rem) {
+  .sidhuvud {
+    padding: calc(var(--luft) * 1.5) calc(var(--luft) * 3);
+  }
+
+  .intro {
+    padding: calc(var(--luft) * 3) calc(var(--luft) * 2) 6cm;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .hero-logotyp {
+    max-width: min(98vw, 1400px);
+  }
+
+  #om,
+  #kompetenser,
+  .mork-sektion,
+  #kontakt {
+    padding: calc(var(--luft) * 5) calc(var(--luft) * 3);
+  }
+
+  /* Om-mig layout: Text till vänster, polaroid till höger */
+  .om-layout {
+    flex-direction: row;
+    align-items: center;
+    gap: calc(var(--luft) * 5);
+  }
+
+  .om-text-block {
+    flex: 1.4;
+  }
+
+  .om-bild-block {
+    flex: 1;
+  }
+
+  .profilbild {
+    max-width: 440px;
+  }
+
+  /* Kompetenser layout: Vertikal text till vänster, lista till höger */
+  .sektion-rad {
+    flex-direction: row;
+    gap: calc(var(--luft) * 4);
+  }
+
+  .sektion-etikett {
+    width: 200px;
+    flex-shrink: 0;
+  }
+
+  .sidrubrik-vertikal {
+    font-size: 3.5rem;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    letter-spacing: 0.08em;
+    margin-top: 1rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .tjanster-kolumn {
+    flex-grow: 1;
+  }
+
+  /* Mitt arbete: Karusellen med vertikal titel */
+  .sektion-rad-mork {
+    flex-direction: row;
+    gap: calc(var(--luft) * 4);
+  }
+
+  .projekt-kolumn {
+    flex-grow: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* Kontakt: Rader med två kolumner */
+  .kontakt-rad {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* ==========================================================================
+   13 · STORA SKÄRMAR (DESKTOP ÖVER 1024px)
+   Logotypen har ungefär 5 cm luft på vardera sidan (totalt 10 cm).
+   ========================================================================== */
+@media (min-width: 64rem) {
+  .hero-logotyp {
+    width: calc(100vw - 6cm);
+    max-width: min(calc(100vw - 6cm), 1700px);
+  }
+}
