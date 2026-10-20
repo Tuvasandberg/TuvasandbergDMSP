@@ -14,50 +14,56 @@
    Här kan du ändra exakt den färg du vill ha för varje enskild del och text!
    ========================================================================== */
 :root {
+  /* SNABBINSTÄLLNINGAR FÖR FÄRGER: ändra hexkoderna här.
+     Övriga färger som använder dessa variabler följer automatiskt med. */
+  --farg-vinrod: #800525;
+  --farg-rosa: #ffc0d0;
+  --farg-ljusrosa: #f9e2e8;
+
   /* ========================================================================
      A · BAKGRUNDSFÄRGER FÖR VARJE SIDA / SEKTION
      ======================================================================== */
-  --bg-sidhuvud: #800525;
+  --bg-sidhuvud: var(--farg-vinrod);
   /* Bakgrund för sidhuvudet (menyn högst upp) */
   --bg-ticker: #f8e5e5;
   /* Bakgrund för det rullande textbandet */
-  --bg-intro: #ffc0d0;
+  --bg-intro: var(--farg-rosa);
   /* Bakgrund för Intro / Hero-sektionen */
-  --bg-hero-image: url("img/hero3-90grader-vanster.jpg");
-  /* Hero-bakgrund från hero3.jpg, roterad 90 grader åt vänster */
-  --bg-om-mig: #ffc0d0;
+  --bg-hero-image: url("img/hero-background.svg");
+  /* Hero-bakgrund: byt ut filen img/hero-background.svg för att välja en annan bild */
+  --bg-om-mig: var(--farg-rosa);
   /* Bakgrund för Om mig-sektionen */
   --bg-om-mig-image: url("img/bakgrund-om-mig.jpg");
-  --bg-kompetenser: #f9e2e8;
+  --bg-kompetenser: var(--farg-ljusrosa);
   /* Bakgrund för Kompetenser-sektionen */
   --bg-kompetenser-image: url("img/bakgrund-kompetenser-zebra-90grader-vanster.png");
   /* Kompetensbakgrund */
-  --bg-mitt-arbete: #800525;
+  --bg-mitt-arbete: var(--farg-vinrod);
   /* Bakgrund för Mitt arbete-sektionen (mörk del) */
   --bg-mitt-arbete-image: url("img/bakgrund-arbete-ny.jpg");
-  --bg-kontakt: #f9e2e8;
+  --bg-kontakt: var(--farg-ljusrosa);
   /* Bakgrund för Kontakt-sektionen */
   --bg-kontakt-image: url("img/bakgrund-kontakt-kompetenser.jpg");
-  --bg-sidfot: #ffc0d0;
+  --bg-sidfot: var(--farg-rosa);
   /* Bakgrund för sidfoten längst ner */
   --bg-sidfot-image: url("img/bakgrund-footer-kakel3.jpg");
 
   /* ========================================================================
      B · RAMAR OCH SKILJELINJER FÖR VARJE SEKTION
      ======================================================================== */
-  --ram-sidhuvud: #800525;
+  --ram-sidhuvud: var(--farg-vinrod);
   /* Linje under sidhuvudet */
-  --ram-ticker: #800525;
+  --ram-ticker: var(--farg-vinrod);
   /* Linje runt det rullande textbandet */
-  --ram-intro: #800525;
+  --ram-intro: var(--farg-vinrod);
   /* Linje under Intro-sektionen */
-  --ram-om-mig: #800525;
+  --ram-om-mig: var(--farg-vinrod);
   /* Linje under Om mig-sektionen */
-  --ram-kompetenser: #800525;
+  --ram-kompetenser: var(--farg-vinrod);
   /* Skiljelinjer mellan kompetenserna */
   --ram-mitt-arbete: #333333;
   /* Skiljelinje i Mitt arbete-sektionen */
-  --ram-kontakt: #800525;
+  --ram-kontakt: var(--farg-vinrod);
   /* Skiljelinjer i kontaktsektionen */
 
   /* ========================================================================
@@ -65,14 +71,14 @@
      ======================================================================== */
   --text-logo: #ffffff;
   /* Namnet / logotypen i sidhuvudet */
-  --logo-color: #800525;
+  --logo-color: var(--farg-vinrod);
   /* Ändra denna variabel för att byta färg på herologotypen */
 
   /* Menyrubrik 1: Om mig */
   --meny-om-text: #ffffff;
   --meny-om-bg: transparent;
   --meny-om-ram: rgba(255, 255, 255, 0.9);
-  --meny-om-hover-text: #800525;
+  --meny-om-hover-text: var(--farg-vinrod);
   --meny-om-hover-bg: #ffffff;
   --meny-om-hover-ram: #ffffff;
 
@@ -80,7 +86,7 @@
   --meny-kompetenser-text: #ffffff;
   --meny-kompetenser-bg: transparent;
   --meny-kompetenser-ram: rgba(255, 255, 255, 0.9);
-  --meny-kompetenser-hover-text: #800525;
+  --meny-kompetenser-hover-text: var(--farg-vinrod);
   --meny-kompetenser-hover-bg: #ffffff;
   --meny-kompetenser-hover-ram: #ffffff;
 
@@ -88,7 +94,7 @@
   --meny-arbete-text: #ffffff;
   --meny-arbete-bg: transparent;
   --meny-arbete-ram: rgba(255, 255, 255, 0.9);
-  --meny-arbete-hover-text: #800525;
+  --meny-arbete-hover-text: var(--farg-vinrod);
   --meny-arbete-hover-bg: #ffffff;
   --meny-arbete-hover-ram: #ffffff;
 
@@ -96,62 +102,62 @@
   --meny-kontakt-text: #ffffff;
   --meny-kontakt-bg: transparent;
   --meny-kontakt-ram: rgba(255, 255, 255, 0.9);
-  --meny-kontakt-hover-text: #800525;
+  --meny-kontakt-hover-text: var(--farg-vinrod);
   --meny-kontakt-hover-bg: #ffffff;
   --meny-kontakt-hover-ram: #ffffff;
 
   /* ========================================================================
      D · TEXTFÄRGER: RULLANDE TEXTBAND (INDIVIDUELLT JUSTERBARA VARIABLER)
      ======================================================================== */
-  --ticker-farg-lia: #800525;
+  --ticker-farg-lia: var(--farg-vinrod);
   /* TILLGÄNGLIG FÖR LIA & UPPDRAG VÅREN 2027 */
-  --ticker-farg-specialist: #800525;
+  --ticker-farg-specialist: var(--farg-vinrod);
   /* DIGITAL MARKETING SPECIALIST */
-  --ticker-farg-sociala: #800525;
+  --ticker-farg-sociala: var(--farg-vinrod);
   /* SOCIALA MEDIER & CONTENT */
-  --ticker-farg-goteborg: #800525;
+  --ticker-farg-goteborg: var(--farg-vinrod);
   /* GÖTEBORG */
-  --ticker-farg-kreativ: #800525;
+  --ticker-farg-kreativ: var(--farg-vinrod);
   /* KREATIV KOMMUNIKATION */
 
   /* ========================================================================
      E · TEXTFÄRGER: INTRO / HERO
      ======================================================================== */
-  --text-intro-sub: #800525;
+  --text-intro-sub: var(--farg-vinrod);
   /* Liten rubrik över namnet (DIGITAL MARKETING...) */
-  --text-intro-namn: #800525;
+  --text-intro-namn: var(--farg-vinrod);
   /* Det stora namnet / logotypen */
-  --text-intro-citat: #800525;
+  --text-intro-citat: var(--farg-vinrod);
   /* Det stora citatet / ingressen */
-  --text-intro-brodtext: #800525;
+  --text-intro-brodtext: var(--farg-vinrod);
   /* Brödtexten under citatet i introt */
 
   /* ========================================================================
      F · TEXTFÄRGER: OM MIG
      ======================================================================== */
-  --text-om-etikett: #800525;
+  --text-om-etikett: var(--farg-vinrod);
   /* Liten etikett (// OM MIG) */
-  --text-om-citat: #800525;
+  --text-om-citat: var(--farg-vinrod);
   /* Det kursiva citatet ("Jag vill få varumärken...") */
-  --text-om-brodtext: #800525;
+  --text-om-brodtext: var(--farg-vinrod);
   /* Alla textstycken i Om mig */
   --bg-polaroid: #ffffff;
   /* Bakgrundsfärg på profilbildens polaroidram */
-  --text-polaroid: #800525;
+  --text-polaroid: var(--farg-vinrod);
   /* Bildtext under profilbilden (Tuva Sandberg · 2026) */
 
   /* ========================================================================
      G · TEXTFÄRGER: KOMPETENSER
      ======================================================================== */
-  --text-komp-vertikal: #800525;
+  --text-komp-vertikal: var(--farg-vinrod);
   /* Stor vertikal rubrik (KOMPETENSER) */
-  --text-komp-etikett: #800525;
+  --text-komp-etikett: var(--farg-vinrod);
   /* Liten etikett (// VAD JAG GÖR) */
-  --text-komp-rubrik: #800525;
+  --text-komp-rubrik: var(--farg-vinrod);
   /* Sektionsrubriken (Kompetenser) */
-  --text-komp-titel: #800525;
+  --text-komp-titel: var(--farg-vinrod);
   /* Titel på varje kompetens (Social Media...) */
-  --text-komp-beskrivning: #800525;
+  --text-komp-beskrivning: var(--farg-vinrod);
   /* Beskrivningen under varje kompetens */
 
   /* ========================================================================
@@ -177,29 +183,29 @@
   /* ========================================================================
      I · TEXTFÄRGER: KONTAKT
      ======================================================================== */
-  --text-kontakt-etikett: #800525;
+  --text-kontakt-etikett: var(--farg-vinrod);
   /* Liten etikett (// KONTAKT) */
-  --text-kontakt-rubrik: #800525;
+  --text-kontakt-rubrik: var(--farg-vinrod);
   /* Huvudrubriken i kontakt */
-  --text-kontakt-ingress: #800525;
+  --text-kontakt-ingress: var(--farg-vinrod);
   /* Inledande text under kontaktrubriken */
-  --text-kontakt-etiketter: #800525;
+  --text-kontakt-etiketter: var(--farg-vinrod);
   /* Fältrubriker (Telefon, E-post, Plats, LinkedIn) */
-  --text-kontakt-lankar: #800525;
+  --text-kontakt-lankar: var(--farg-vinrod);
   /* Telefonnummer, e-postadress, adress och länk */
 
   /* ========================================================================
      J · KNAPPAR: TEXT, BAKGRUND OCH RAM
      ======================================================================== */
-  --btn-text: #800525;
+  --btn-text: var(--farg-vinrod);
   /* Textfärg på knapparna */
   --btn-bg: transparent;
   /* Bakgrundsfärg på knapparna */
-  --btn-ram: #800525;
+  --btn-ram: var(--farg-vinrod);
   /* Ramfärg på knapparna */
   --btn-hover-text: #ffffff;
   /* Textfärg när man hovrar över knappen */
-  --btn-hover-bg: #800525;
+  --btn-hover-bg: var(--farg-vinrod);
   /* Bakgrundsfärg vid hovring */
 
   /* ========================================================================
@@ -544,7 +550,7 @@ nav a[href="#kontakt"]:hover {
 
 /* Logotyp med litet och jämnt mellanrum till undertexten */
 .hero-logotyp-wrap {
-  margin: 0 auto 0.5cm auto;
+  margin: 0 auto 0.2cm auto;
   display: flex;
   justify-content: center;
   align-items: center;
