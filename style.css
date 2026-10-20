@@ -550,7 +550,7 @@ nav a[href="#kontakt"]:hover {
 
 /* Logotyp med litet och jämnt mellanrum till undertexten */
 .hero-logotyp-wrap {
-  margin: 0 auto 0.2cm auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -601,13 +601,14 @@ nav a[href="#kontakt"]:hover {
   text-align: center;
 }
 
-/* Kontakta mig-knappen flyttad upp, närmare undertexten och högre i hero */
+/* Kontakta mig-knappen placeras direkt under logotypen med cirka 5 mm luft */
 .hero-knapp-rad {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 0.15rem;
+  margin-top: 0.5cm;
+  margin-bottom: 0.65rem;
 }
 
 /* ==========================================================================
