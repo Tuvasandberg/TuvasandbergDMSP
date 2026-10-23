@@ -318,7 +318,7 @@ img {
 }
 
 .logo-namn {
-  font-family: var(--typsnitt-display);
+  font-family: "The Seasons", var(--typsnitt-serif);
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -353,7 +353,7 @@ nav a {
   align-items: center;
   justify-content: center;
   padding: 0.55rem 1.15rem;
-  border-radius: 4px;
+  border-radius: 999px;
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -461,12 +461,12 @@ nav a[href="#kontakt"]:hover {
 }
 
 .ticker-del span {
-  font-family: var(--typsnitt-sans);
-  font-size: 0.75rem;
-  font-style: italic;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+  font-family: "Pinyon Script", cursive;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.03em;
   white-space: nowrap;
 }
 
@@ -699,8 +699,8 @@ footer {
 }
 
 .citat-rubrik {
-  font-family: var(--typsnitt-serif);
-  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-family: "Pinyon Script", cursive;
+  font-size: clamp(2rem, 3.6vw, 3rem);
   font-style: italic;
   font-weight: 400;
   line-height: 1.35;
@@ -1066,7 +1066,7 @@ body.ljusbox-oppen {
 }
 
 .ljusbox-nav:hover {
-  background: #a20a38;
+  background: var(--farg-vinrod);
 }
 
 .ljusbox-foregaende { left: -64px; }
