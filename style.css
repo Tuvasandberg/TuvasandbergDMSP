@@ -429,6 +429,29 @@ nav a[href="#kontakt"]:hover {
   transform: translateY(-1px);
 }
 
+@media (max-width: 48rem) {
+  .sidhuvud {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-namn {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+}
+
 /* ==========================================================================
    5 · TICKER TAPE / MARQUEE-BAND
    Sömlöst rullande textband utan '//' med individuellt justerbara färger.
