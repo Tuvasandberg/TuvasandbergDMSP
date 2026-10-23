@@ -1,4 +1,14 @@
 // Interaktioner för ljusboxen i projektkarusellen.
+// Hindra webbläsaren från att återställa föregående scrollposition vid sidladdning.
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.addEventListener("pageshow", () => {
+    if (window.location.hash) return;
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => { root.style.scrollBehavior = previousBehavior; });
+});
 document.addEventListener("DOMContentLoaded", () => {
     const ljusbox = document.getElementById("ljusbox");
     const ljusboxBild = document.getElementById("ljusbox-bild");
@@ -27,9 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ljusboxBild.src = bild.src;
         ljusboxBild.alt = bild.alt;
 
-        let text = "";
-        if (bild.rubrik) text += `<strong>${bild.rubrik}</strong>`;
-        if (bild.beskrivning) text += `<span>${bild.beskrivning}</span>`;
+        const text = bild.beskrivning ? `<span>${bild.beskrivning}</span>` : "";
         ljusboxText.innerHTML = text;
         ljusboxText.style.display = text ? "block" : "none";
     }
