@@ -24,6 +24,7 @@
      A · BAKGRUNDSFÄRGER FÖR VARJE SIDA / SEKTION
      ======================================================================== */
   --bg-sidhuvud: var(--farg-vinrod);
+  --bg-sidhuvud-image: url("img/header-90-left.jpg");
   /* Bakgrund för sidhuvudet (menyn högst upp) */
   --bg-ticker: #f8e5e5;
   /* Bakgrund för det rullande textbandet */
@@ -312,6 +313,9 @@ img {
   gap: 1.25rem;
   padding: calc(var(--luft) * 1.5) calc(var(--luft) * 1.5);
   background-color: var(--bg-sidhuvud);
+  background-image: var(--bg-sidhuvud-image);
+  background-position: center;
+  background-size: cover;
   border-bottom: 1px solid var(--ram-sidhuvud);
   position: relative;
   z-index: 10;
@@ -461,10 +465,10 @@ nav a[href="#kontakt"]:hover {
 }
 
 .ticker-del span {
-  font-family: "Pinyon Script", cursive;
+  font-family: var(--typsnitt-sans);
   font-size: 1.2rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: none;
   letter-spacing: 0.03em;
   white-space: nowrap;
