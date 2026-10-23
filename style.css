@@ -652,6 +652,7 @@ footer {
 /* Generella knappar */
 .knapp {
   display: inline-block;
+  border-radius: 999px;
   padding: 0.85rem 2.2rem;
   background-color: var(--btn-bg);
   color: var(--btn-text);
