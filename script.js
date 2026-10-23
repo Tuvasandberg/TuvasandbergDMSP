@@ -1,14 +1,18 @@
 // Interaktioner för ljusboxen i projektkarusellen.
 // Hindra webbläsaren från att återställa föregående scrollposition vid sidladdning.
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-window.addEventListener("pageshow", () => {
-    if (window.location.hash) return;
+function borjaHogstUpp() {
     const root = document.documentElement;
     const previousBehavior = root.style.scrollBehavior;
     root.style.scrollBehavior = "auto";
-    window.scrollTo(0, 0);
-    requestAnimationFrame(() => { root.style.scrollBehavior = previousBehavior; });
-});
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        root.style.scrollBehavior = previousBehavior;
+    });
+}
+window.addEventListener("pageshow", borjaHogstUpp);
+window.addEventListener("load", borjaHogstUpp);
 document.addEventListener("DOMContentLoaded", () => {
     const ljusbox = document.getElementById("ljusbox");
     const ljusboxBild = document.getElementById("ljusbox-bild");
