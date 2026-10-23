@@ -466,11 +466,11 @@ nav a[href="#kontakt"]:hover {
 
 .ticker-del span {
   font-family: var(--typsnitt-sans);
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: 0.03em;
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   white-space: nowrap;
 }
 
